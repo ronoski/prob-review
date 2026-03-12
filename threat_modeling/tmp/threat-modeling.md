@@ -988,6 +988,38 @@ An **attack tree** is a visual map of how an attacker can reach a goal. The root
                                   +-----------------+
 ```
 
+
+### Attacker Mindset
+
+#### They Don't Attack Components — They Break Trust Assumptions
+
+| Assumption Designers Made | Reality |
+|---|---|
+| "Hospital network provides isolation" | Network is flat — no segmentation |
+| "Update server is trusted" | If vendor is compromised, every hospital is compromised |
+| "RUI limits the attack surface" | RUI sits on a full OS it cannot control |
+| "Internal device comms are trusted" | Wi-Fi is broadcast — any node can listen |
+
+#### Four Attacker Archetypes
+
+```
+┌─────────────────────┬──────────────────────────────────────────────┐
+│ Attacker            │ Goal & Method                                │
+├─────────────────────┼──────────────────────────────────────────────┤
+│ Reckless Nurse      │ Unintentional — kiosk shortcut leaves system │
+│                     │ exposed; no malicious intent                 │
+├─────────────────────┼──────────────────────────────────────────────┤
+│ Hospital Thief      │ Opportunistic — 20 sec physical access,      │
+│                     │ USB drive, sells patient data                │
+├─────────────────────┼──────────────────────────────────────────────┤
+│ Data Miner          │ Sophisticated — targets control server as    │
+│                     │ weaker path to EHR patient records at scale  │
+├─────────────────────┼──────────────────────────────────────────────┤
+│ Govt. Cyber Warrior │ Nation-state — compromises vendor update     │
+│                     │ server to hit entire hospital fleet at once  │
+└─────────────────────┴──────────────────────────────────────────────┘
+```
+
 ---
 
 ## Rating Threats — DREAD
