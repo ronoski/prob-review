@@ -66,8 +66,25 @@ The server sends its certificate chain for authentication:
 
 In TLS 1.3, the handshake completes in **1 round trip (1-RTT)**. Application Data is encrypted immediately after the handshake — Wireshark shows only the size, not the content, unless a `SSLKEYLOGFILE` is provided.
 
+---
+
+## 5. Decrypting Application Data
+
+By default Application Data is unreadable. To decrypt it:
+
+**Step 1** — Set the key log env var before launching your browser or curl:
 ```bash
-# To decrypt in Wireshark:
 export SSLKEYLOGFILE=~/tls-keys.log
-# Then: Edit → Preferences → Protocols → TLS → set key log file
 ```
+
+**Step 2** — Run your traffic (browser, curl, etc.). Session keys are written to the file automatically.
+
+**Step 3** — In Wireshark:
+```
+Edit → Preferences → Protocols → TLS
+```
+Set `(Pre)-Master-Secret log filename` to `~/tls-keys.log`.
+
+**Step 4** — Wireshark will now show the decrypted HTTP/2 or HTTP/1.1 payload inside Application Data rows.
+
+> **Note:** TLS 1.3 uses forward secrecy (ECDHE) by default — the RSA private key alone cannot decrypt traffic. `SSLKEYLOGFILE` is the only method that works.
