@@ -25,28 +25,6 @@ Threat modeling **systematically identifies possible attacks** against a system 
 
 ---
 
-## Why IoT is a Hard Target
-
-IoT devices are constrained by design, which makes security harder:
-
-```
-  +---------------------------+---------------------------------------+
-  | Constraint                | Security consequence                  |
-  +---------------------------+---------------------------------------+
-  | Low CPU / memory          | Cannot run antivirus / complex crypto |
-  | Off-the-shelf OS (Android,| OS has more features than needed;     |
-  |   Linux, RTOS)            | more attack surface                   |
-  | Custom apps layered on OS | Apps often bypass OS security         |
-  | White-label hardware      | Updates hard to push across vendors   |
-  | No software whitelisting  | Any code can run on the device        |
-  | No NAC enforcement        | No policy on who/what connects        |
-  | Short vendor support life | Unpatched CVEs live forever           |
-  | Proprietary protocols     | Cannot use standard hardening tools   |
-  +---------------------------+---------------------------------------+
-```
-
----
-
 ## The STRIDE Framework
 
 STRIDE is a **software-centric** threat classification model developed at Microsoft. It focuses on weaknesses in technology components rather than on assets or attackers.
@@ -567,45 +545,6 @@ Trust boundaries are the lines in our diagram where data crosses from one securi
 - **Can it be tampered with in transit?**
   
 ![Alt Text](../trust_boudary.png)
-
-```
-  [Nurse]
-     |
-     v
-  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-  :                  ONSITE COMPONENTS                       :
-  :                                                          :
-  :  . . . . . . . . . . . . . . .  . . . . . . . . . . .   :
-  :  : Drug infusion pump        :  :   Control server   :   :
-  :  :                           :  :                    :   :
-  :  :  [Pump service]           :  : [Restrictive UI]   :   :
-  :  :       |                   :  :        |           :   :
-  :  :  [Operating system]  <----|--|-> [Control server  :   :
-  :  :       |                   :  :    service]        :   :
-  :  :  [Firmware]               :  :        |           :   :
-  :  :       |                   :  :  [Operating system]:   :
-  :  :  [Physical system]        :  :        |           :   :
-  :  :                           :  :  [Firmware]        :   :
-  :  : . . . . . . . . . . . . . :  :        |           :   :
-  :                                  :  [Physical system] :   :
-  [Patient]-->                   :  : . . . . . . . . . . :   :
-  :                                                          :
-  : . . . . . . . . . . . . . . . . . . . . . . . . . . . . :
-                     |                         |
-                     v                         v
-  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-  :               OFFSITE COMPONENTS                         :
-  :                                                          :
-  :       +--------+              +----------------+         :
-  :       |  EHR   |              | Update server  |         :
-  :       +--------+              +----------------+         :
-  :                                                          :
-  : . . . . . . . . . . . . . . . . . . . . . . . . . . . . :
-
-  Key insight: patient data can travel from the pump
-  through the control server to the third-party update server.
-  --> First threat identified: insecure update mechanism.
-```
 
 ---
 
