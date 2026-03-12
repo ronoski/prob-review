@@ -491,7 +491,24 @@ These are the highest-risk data flows — each one is a potential threat entry p
 ## Asset Identification
 
 An asset is anything of value that must be protected. Identifying assets before threat analysis ensures you know **what you are defending** and can assess the real-world impact of each threat.
-
+Questions to perform  Asset Identification:
+| Category              | Key Questions                                                                                  |
+|-----------------------|------------------------------------------------------------------------------------------------|
+| Asset Type            | Is the asset hardware, software, data, interface, credential, or physical resource?           |
+| Asset Owner           | Who owns, maintains, or is responsible for this asset?                                         |
+| Asset Location        | Where is the asset stored, executed, or physically located?                                    |
+| Asset Value           | Why is this asset important? Safety? Privacy? Financial? Operational?                          |
+| Asset Function        | What role does the asset play in the system (control, monitoring, communication, logging)?     |
+| Asset Users           | Who interacts with the asset (humans, ECUs, cloud services, apps)?                            |
+| Accessibility         | Who can access this asset and through what interfaces?                                         |
+| Interfaces/Inputs     | What interfaces expose this asset (API, CLI, BLE, Wi‑Fi, UART, CAN, USB)?                     |
+| Data Sensitivity      | Does the asset contain sensitive data (keys, credentials, patient info, vehicle status)?        |
+| Dependencies          | Which components does this asset depend on?                                                    |
+| Exposure              | Is the asset internal-only, network-exposed, cloud-exposed, or physically exposed?            |
+| Failure Impact        | If compromised, what impact occurs (safety, privacy, DoS, incorrect operation)?                |
+| Threat Attractiveness | Why would an attacker target this asset (keys, control authority, sensitive data)?             |
+| Trust Level           | In which trust zone does the asset reside? Low/medium/high?                                    |
+| Required Protections  | Does the asset require confidentiality, integrity, availability, authenticity, non-repudiation?|
 ### Asset Categories
 
 ```
