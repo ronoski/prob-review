@@ -355,6 +355,49 @@ Data flows **bidirectionally** between all components. Any crossing of a data fl
 ## Data Flows Between Components
 
 Understanding exactly what data moves where is critical — it reveals where sensitive information is exposed and which paths an attacker can exploit.
+```
+                [NURSE]
+                   │
+                   │ ① PIN · patient selection · drug · rate config · alarm ack
+                   ▼
+╔══════════════════════════════ HOSPITAL (ONSITE) ═══════════════════════════════╗
+║                                                                                ║
+║  ┌──────────────────────────────────────────────────────────────────────────┐ ║
+║  │                               RUI                                        │ ║
+║  └──────────────────────────────────┬───────────────────────────────────────┘ ║
+║                                     │ ② commands · drug queries               ║
+║                                     ▼                                          ║
+║  ┌──────────────────────────────────────────┐  ③ dose queries  ┌───────────┐ ║
+║  │           Control Server Svc             │ ───────────────► │   Drug    │ ║
+║  │                                          │ ◄─── params ───  │  Library  │ ║
+║  └────────────────────┬─────────────────────┘    credentials   └───────────┘ ║
+║                       │                                                        ║
+║            ┌────── ④ Wi-Fi ⚠️  [UNENCRYPTED] ──────┐                        ║
+║            │  ──► infusion cmds · rate (ml/hr) · OTA │                        ║
+║            │  ◄── sensor readings · alarms · status   │                        ║
+║            └──────────────────┬──────────────────────┘                        ║
+║                               ▼                                                ║
+║  ┌──────────────────────────────────────────────────────────────────────────┐ ║
+║  │                            DRUG PUMP                                     │ ║
+║  └──────────────────────────────────────────────────────────────────────────┘ ║
+║                               ▲                                                ║
+║                               │ [PATIENT] — physical contact                   ║
+╚══════════════════╤════════════════════════════════════════╤════════════════════╝
+                   │                                        │
+      ⑤ HTTPS ✓   │                        ⑥ Custom TCP ⚠️ │
+  ──► patient ID   │                         ──► serial · FW version
+  ──► session logs │                         ──► drug lib version
+  ◄── PHI          │                         ◄── firmware packages
+  ◄── allergies    │                         ◄── drug lib updates
+  ◄── orders       │                         ⚠️  may also carry PHI
+                   ▼                                        ▼
+            ┌─────────────┐                      ┌──────────────────┐
+            │     EHR     │                      │  UPDATE SERVER   │
+            │  (OFFSITE)  │                      │    (OFFSITE)     │
+            └─────────────┘                      └──────────────────┘
+```
+
+**Complete data flow map**
 
 ```
   COMPLETE DATA FLOW MAP
