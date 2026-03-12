@@ -666,6 +666,23 @@ Trust boundaries are the lines in our diagram where data crosses from one securi
 ![Alt Text](../trust_boudary.png)
 
 ---
+### Trutst zones
+
+A “trust zone” is a grouping of components with the **same trust level, same security assumptions, and same security guarantees**.
+
+
+#### 🏁 **Summary: Trust Zones for the Drug Infusion Pump**
+
+| Trust Zone | Name                           | Trust Level | Examples                                   |
+| ---------- | ------------------------------ | ----------- | ------------------------------------------ |
+| TZ1        | Untrusted External Environment | Low         | Public network, unknown devices            |
+| TZ2        | Hospital Network               | Low–Medium  | Hospital LAN/Wi‑Fi                         |
+| TZ3        | Nurse Workstation Zone         | Medium      | Monitoring station, nurse PC               |
+| TZ4        | Pump Interface Zone            | Medium–High | BLE/Wi-Fi module, communication interfaces |
+| TZ5        | Internal Pump Control Software | High        | Infusion logic, safety rules               |
+| TZ6        | Hardware Actuation Layer       | Very High   | Motors, valves, sensors                    |
+
+
 
 ### When Trust Assumptions Break — How Attackers Exploit Them
 
