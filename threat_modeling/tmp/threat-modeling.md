@@ -490,7 +490,9 @@ These are the highest-risk data flows — each one is a potential threat entry p
 
 ## Asset Identification
 
-An asset is anything of value that must be protected. Identifying assets before threat analysis ensures you know **what you are defending** and can assess the real-world impact of each threat.
+An asset is anything of value that must be protected and what threat actors want.
+Identifying assets before threat analysis ensures you know **what you are defending** and can assess the real-world impact of each threat.
+
 Questions to perform  Asset Identification:
 | Category              | Key Questions                                                                                  |
 |-----------------------|------------------------------------------------------------------------------------------------|
