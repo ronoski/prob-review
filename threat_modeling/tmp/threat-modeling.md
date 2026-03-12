@@ -366,40 +366,7 @@ The control server also connects to external systems for patient records and sof
 ### Step 2 — Break into Components
 
 Zoom in to show the internal layers of each device.
-
-```
-  +-----------------------------+   +----------------------------------------+
-  |    Drug infusion pump       |   |            Control server              |
-  |                             |   |                                        |
-  |   +-------------------+     |   |  +-------------------+ +-------------+ |
-  |   |   Pump service    |<----|-->|  | Control server    | | Drug library| |
-  |   +--------+----------+     |   |  | service           | +------+------+ |
-  |            |                |   |  +--------+----------+        |        |
-  |   +--------+----------+     |   |           |     ^             |        |
-  |   |  Operating system |     |   |  +--------+-----+-+           |        |
-  |   +--------+----------+     |   |  | Restrictive   |           |        |
-  |            |                |   |  | user interface|           |        |
-  |   +--------+----------+     |   |  +---------------+           |        |
-  |   | Firmware of device|     |   |           |                           |
-  |   | components        |     |   |  +--------+----------+                |
-  |   +--------+----------+     |   |  |  Operating system |                |
-  |            |                |   |  +--------+----------+                |
-  |   +--------+----------+     |   |           |                           |
-  |   |  Physical system  |     |   |  +--------+----------+                |
-  |   +-------------------+     |   |  | Firmware of device|                |
-  |                             |   |  | components        |                |
-  +-----------------------------+   |  +--------+----------+                |
-                                    |           |                            |
-                                    |  +--------+----------+                |
-                                    |  |  Physical system  |                |
-                                    |  +-------------------+                |
-                                    +----------------------------------------+
-          |                                                    |
-          v                                                    v
-  +--------+                                          +----------------+
-  |  EHR   |                                          | Update server  |
-  +--------+                                          +----------------+
-```
+![Alt Text](../sytem_breakdown.png)
 
 Data flows **bidirectionally** between all components. Any crossing of a data flow between components is a potential attack entry point.
 
@@ -592,7 +559,7 @@ Each asset maps directly to the threats that target it. This is the bridge betwe
 ### Step 3 — Add Trust Boundaries
 
 Trust boundaries group components with the same security attributes. Data crossing a boundary is where threats concentrate.
-
+![Alt Text](../trust_boudary.png)
 ```
   [Nurse]
      |
