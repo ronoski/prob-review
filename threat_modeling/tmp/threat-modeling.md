@@ -459,6 +459,16 @@ An asset is anything of value that must be protected. Identifying assets before 
   +---------------------+----------------------------------------------+
 ```
 
+| # | Asset | Where It Lives | Why It Matters |
+|---|---|---|---|
+| 1 | **Patient Safety** | Drug Pump (bedside) | Wrong dose rate = patient death |
+| 2 | **Patient Health Data** | EHR · Control Server · Pump logs | PHI under HIPAA; legal & financial liability |
+| 3 | **Auth Credentials** | RUI · Control Server · Vendor infra | PIN, API keys, vendor remote access |
+| 4 | **Drug Library** | Control Server (onsite DB) | Defines what "safe dose" means to the pump |
+| 5 | **Firmware Integrity** | Pump · Control Server hardware | Persists through OS reinstall & disk replacement |
+| 6 | **System Availability** | Pump · Control Server · Wi-Fi link | Pump downtime = medical emergency |
+
+
 ### Asset Location Map
 
 ```
