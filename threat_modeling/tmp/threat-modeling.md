@@ -211,7 +211,7 @@ The following walks through a full STRIDE threat model for a hospital drug infus
 ---
 
 ## How the Drug Infusion Pump System Works
-
+![Alt Text](../sytem_breakdown.png)
 A drug infusion pump delivers controlled doses of medication directly into a patient's bloodstream. In a hospital setting it does not operate in isolation — it is part of a networked ecosystem managed by clinical staff.
 
 ```
