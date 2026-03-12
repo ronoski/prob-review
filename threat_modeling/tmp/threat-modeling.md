@@ -355,6 +355,19 @@ Data flows **bidirectionally** between all components. Any crossing of a data fl
 ## Data Flows Between Components
 
 Understanding exactly what data moves where is critical — it reveals where sensitive information is exposed and which paths an attacker can exploit.
+| Category            | Key Questions                                                                 |
+|---------------------|-------------------------------------------------------------------------------|
+| Components          | Who sends/receives the data? Any intermediaries (gateways, drivers, daemons)? |
+| Direction           | One-way? Bidirectional? Request/response? Who initiates?                      |
+| Protocol            | TCP/UDP/BLE/CAN/HTTP/MQTT? JSON/XML/custom? Security features available?      |
+| Data Content        | What data is sent? Sensitive? Commands, telemetry, IDs, credentials?          |
+| Trust Boundaries    | Does data cross devices, networks, ECUs, OS layers? Different trust zones?    |
+| Security Controls   | Encryption? Authentication? Integrity? Nonce/sequence for anti‑replay?        |
+| Triggers            | Event-driven? Periodic? User-triggered? Remote command?                       |
+| Data Handling       | Stored? Parsed? Logged? Forwarded? Used in safety/logic decisions?            |
+| Assumptions         | What assumptions exist about validity, freshness, sender identity, order?     |
+| Attacker Actions    | Can attacker sniff, tamper, spoof, replay, inject, jam, DoS, impersonate?     |
+
 ```
                 [NURSE]
                    │
