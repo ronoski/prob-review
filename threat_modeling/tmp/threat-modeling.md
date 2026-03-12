@@ -189,7 +189,9 @@ The following walks through a full STRIDE threat model for a hospital drug infus
 ---
 
 ## How the Drug Infusion Pump System Works
+
 ![Alt Text](../sytem_breakdown.png)
+
 A drug infusion pump delivers controlled doses of medication directly into a patient's bloodstream. In a hospital setting it does not operate in isolation — it is part of a networked ecosystem managed by clinical staff.
 
 ```
@@ -456,6 +458,38 @@ An asset is anything of value that must be protected. Identifying assets before 
   |                     | regulatory compliance (CE, HIPAA)            |
   +---------------------+----------------------------------------------+
 ```
+
+### Asset Location Map
+
+```
+ ONSITE                                      OFFSITE
+ ┌─────────────────────────────────────┐     ┌──────────────────┐
+ │                                     │     │                  │
+ │  ┌─────────────┐                    │     │  ┌───────────┐   │
+ │  │ DRUG PUMP   │                    │     │  │   EHR     │   │
+ │  │             │                    │     │  │           │   │
+ │  │ [A1] Safety │◄──────────────┐    │     │  │ [A2] PHI  │   │
+ │  │ [A5] FW     │               │    │     │  └───────────┘   │
+ │  │ [A6] Avail  │               │    │     │                  │
+ │  └─────────────┘               │    │     │  ┌───────────┐   │
+ │                                │    │     │  │  UPDATE   │   │
+ │  ┌─────────────────────────┐   │    │     │  │  SERVER   │   │
+ │  │    CONTROL SERVER       │   │    │     │  │           │   │
+ │  │                         │───┘    │     │  │ [A3] Cred │   │
+ │  │  RUI  → [A3] Credentials│        │     │  └───────────┘   │
+ │  │  CSS  → [A6] Avail      │        │     │                  │
+ │  │  DB   → [A4] Drug Lib   │        │     └──────────────────┘
+ │  │         [A2] PHI        │        │
+ │  │  FW   → [A5] Integrity  │        │
+ │  └─────────────────────────┘        │
+ │                                     │
+ └─────────────────────────────────────┘
+
+ Asset Key:
+ [A1] Patient Safety    [A2] Patient Health Data   [A3] Auth Credentials
+ [A4] Drug Library      [A5] Firmware Integrity    [A6] System Availability
+```
+
 
 ### Asset Inventory Table
 
