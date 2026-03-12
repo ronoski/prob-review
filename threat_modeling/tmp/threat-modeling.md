@@ -609,6 +609,24 @@ Trust boundaries are the lines in our diagram where data crosses from one securi
 
 ---
 
+### When Trust Assumptions Break — How Attackers Exploit Them
+
+Designers build trust assumptions into every boundary. Attackers look for where those assumptions are **wrong**.
+
+| Trust Assumption Made | Reality | How Attacker Breaks It |
+|-----------------------|---------|------------------------|
+| "The nurse entering the PIN is a legitimate staff member" | PIN is 4 digits, shared across all staff, no lockout delay | Shoulder-surf or brute-force the PIN; every nurse becomes the same identity |
+| "The RUI controls everything a user can do" | RUI is a UI layer — the OS underneath has no awareness of RUI restrictions | Connect a USB keyboard, trigger Alt-F4 or Sticky Keys, escape to OS shell |
+| "Commands arriving over Wi-Fi come from the control server" | No cryptographic device certificates; identity is IP/MAC-based | Sit on the same Wi-Fi segment, spoof the control server's MAC/IP, send commands directly to the pump |
+| "The pump readings arriving at the control server are real" | Same unencrypted Wi-Fi channel, no message authentication | MITM the Wi-Fi — intercept sensor readings, substitute falsified values, forward to control server |
+| "The update server is a trusted vendor system" | Internet-facing, custom protocol, unclear authentication | Compromise the update server, inject malicious firmware — every hospital pulling updates gets the payload |
+| "Patient data stays onsite" | Update channel carries more than version strings | Passively monitor the Custom TCP stream; PHI exits the hospital with no TLS, no audit trail |
+
+#### The Pattern
+- **Designers assume** the environment enforces the boundary (network isolation, UI restriction, trusted vendor)
+- **Attackers assume** nothing is enforced unless proven cryptographically
+- Every boundary in this system relies on at least one environmental assumption that the flat, unsegmented hospital network actively violates
+
 ## Threat Summary — All Components at a Glance
 
 Before diving per-component, here is every threat in the system mapped to the component it targets and the STRIDE category it falls under.
