@@ -649,6 +649,36 @@ Before diving per-component, here is every threat in the system mapped to the co
 
 ---
 
+## Attack Surface
+
+### Every Entry Point an Attacker Can Touch
+
+#### Network
+- [ ] Wi-Fi interface on pump — open to hospital network
+- [ ] Wi-Fi interface on control server
+- [ ] Custom TCP channel to update server (bidirectional)
+- [ ] Management ports: SSH, RDP, web admin
+
+#### Physical
+- [ ] USB ports on pump and control server
+- [ ] JTAG debug interface on circuit board
+- [ ] External storage slots (SD cards)
+- [ ] Physical power supply
+
+#### Software
+- [ ] RUI — accepts user input, kiosk-escape vectors
+- [ ] Control server API — unauthenticated endpoints
+- [ ] Drug Library — SQL-accessible via RUI
+- [ ] Firmware OTA update mechanism
+
+#### Human
+- [ ] Nurse — social engineering, PIN observation
+- [ ] Patient — physical pump access
+- [ ] IT Admin — elevated internal access
+- [ ] Vendor technician — remote support credentials
+
+---
+
 ## Identifying Threats — Per Component
 
 A good rule: find **at least one threat per STRIDE letter per component**. Each cell in the tables below is the seed of a **threat scenario** — take the one-line description, add preconditions and impact, and you have a complete, scoreable scenario (see the Threat Scenarios section above).
