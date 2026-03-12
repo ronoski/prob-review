@@ -559,7 +559,15 @@ Each asset maps directly to the threats that target it. This is the bridge betwe
 ### Step 3 — Add Trust Boundaries
 
 Trust boundaries group components with the same security attributes. Data crossing a boundary is where threats concentrate.
+Trust boundaries are the lines in our diagram where data crosses from one security context to another. At every boundary, ask:
+
+- **Who is authenticating whom?**
+- **Who is authorizing the action?**
+- **Is the data validated?**
+- **Can it be tampered with in transit?**
+  
 ![Alt Text](../trust_boudary.png)
+
 ```
   [Nurse]
      |
