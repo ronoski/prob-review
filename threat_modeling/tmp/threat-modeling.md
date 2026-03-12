@@ -830,7 +830,7 @@ An **attack tree** is a visual map of how an attacker can reach a goal. The root
 
 - **OR nodes** — attacker needs only one child to succeed
 - **AND nodes** — attacker needs all children to succeed (shown as connected leaves)
-
+![Alt Text](../attack_tree.png)
 ```
   Example: Attack tree for "Tamper with drug delivery"
 
