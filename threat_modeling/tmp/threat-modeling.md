@@ -959,53 +959,16 @@ The software on the pump itself — communicates with the control server and the
 
 ## Attack Trees
 
-An **attack tree** is a visual map of how an attacker can reach a goal. The root is the attacker's objective. Branches are alternative paths. Leaves are the actual techniques.
+An **attack tree** is a hierarchical way to break down an attack goal into smaller, actionable sub‑goals and steps.
 
-- **OR nodes** — attacker needs only one child to succeed
-- **AND nodes** — attacker needs all children to succeed (shown as connected leaves)
+*   The **root** = attacker’s main objective
+*   The **branches** = strategies or paths
+*   The **leaves** = concrete actions or exploits
+
+Attack trees visualize how an attacker can move through the system by chaining weaknesses across trust boundaries, data flows, or components.
+
 ![Alt Text](../attack_tree.png)
-```
-  Example: Attack tree for "Tamper with drug delivery"
 
-                       +-------------------------+
-                       |  Tamper with            |
-                       |  drug delivery          |
-                       +-----------+-------------+
-                                   |
-               +-------------------+-------------------+
-               |                                       |
-  +------------+-----------+             +-------------+-----------+
-  |  Change infusion rate  |             | Disrupt infusion rate   |
-  |                        |             | update (DoS)            |
-  +----+---------------+---+             +--------+----------+-----+
-       |               |                          |          |
-  +----+----+   +------+-------+        +---------+--+  +----+----------+
-  | Tamper  |   | Tamper       |        | Disrupt    |  | Force device  |
-  | device  |   | database     |        | data in    |  | malfunction   |
-  | settings|   | data         |        | transit    |  |               |
-  +----+----+   +------+-------+        +-----+------+  +----+-----+----+
-       |                |                     |               |     |
-  +----+----+  +--------+----+          +-----+------+  +----+-+ +--+----+
-  |Drug pump|  |Improper     |          |Database    |  |Send  | |Block  |
-  |weak 4-  |  |access ctrl  |          |access      |  |shutdn| |updates|
-  |digit PIN|  |at drug lib  |          +--+------+--+  |cmd   | |       |
-  +---------+  +-------------+             |      |     +------+ +-------+
-  |Reprogram|                        +-----+-+ +--+------+
-  |via JTAG |                        |Jamming| |Flooding |
-  +---------+                        +-------+ +---------+
-               +-------------+
-               |SQL inject in|    +-------------------+
-               |RUI          |    |Disrupt access to  |
-               +-------------+    |data at rest       |
-               |Exposed unauth|   +--------+----------+
-               |SQL service   |            |
-               +--------------+   +--------+--------+
-                                  |Remove hard drive|
-                                  +--------+--------+
-                                  |Exhaust resources|
-                                  |complex queries  |
-                                  +-----------------+
-```
 
 
 ### Attacker Mindset
