@@ -1263,6 +1263,36 @@ These threats appear consistently across IoT assessments regardless of device ty
 
 ---
 
+## Key Takeaways
+
+### The Three Questions of Threat Modeling
+
+```
+┌────────────────────────────────────────────────────────────┐
+│  1. WHERE does trust change hands?                         │
+│     → Every boundary is a potential attack path           │
+├────────────────────────────────────────────────────────────┤
+│  2. WHAT happens if that trust is violated?                │
+│     → Map it to assets: safety, data, credentials,        │
+│       firmware, availability                               │
+├────────────────────────────────────────────────────────────┤
+│  3. WHAT IS THE WORST CASE if this component is            │
+│     fully compromised?                                     │
+│     → Work backwards from impact to attack path           │
+└────────────────────────────────────────────────────────────┘
+```
+
+### Threat Modeling Is a Discipline, Not a Checkbox
+
+| When to do it | Why |
+|---|---|
+| At design time | Cheapest to fix — nothing is built yet |
+| When architecture changes | New components = new trust boundaries |
+| When new features are added | New user flows = new attack paths |
+| After an incident | Validate your model against reality |
+
+---
+
 ## Quick Reference
 
 | Term                | Meaning                                                         |
@@ -1292,3 +1322,11 @@ These threats appear consistently across IoT assessments regardless of device ty
 | MITM                | Man-in-the-Middle — attacker intercepts and modifies traffic   |
 | Software whitelisting | Only approved executables are allowed to run on a device     |
 | NAC                 | Network Access Control — enforces who/what can join a network  |
+
+
+> **Think like an attacker. Build like a defender.**
+
+---
+*Companion reference for: Threat Modeling an IoT Medical Device System*
+*Sections map 1:1 to the presenter's talk script*
+
