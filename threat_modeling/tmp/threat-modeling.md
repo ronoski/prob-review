@@ -668,7 +668,9 @@ Trust boundaries are the lines in our diagram where data crosses from one securi
 ---
 ### Trutst zones
 
-A “trust zone” is a grouping of components with the **same trust level, same security assumptions, and same security guarantees**.
+A **trust zone** is a grouping of components with the **same trust level, same security assumptions, and same security guarantees**.
+
+**Threat actor goal**: To move from a **lower‑trust zone** into a **higher‑trust** zone in order to gain more privileges, more control, or access to more valuable assets.
 
 
 #### 🏁 **Summary: Trust Zones for the Drug Infusion Pump**
