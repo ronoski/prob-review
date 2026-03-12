@@ -1491,3 +1491,56 @@ V2X connects vehicles to other vehicles (V2V), infrastructure (V2I), and cloud (
 
 ---
 *Sources: `tls-certificates-ciphers.md` + `tls-gpt-full.md`*
+
+---
+
+## Wireshark: Inspecting TLS Traffic
+
+### See encrypted TLS handshake (no key needed)
+Filter: `tls` or `ssl`
+
+This shows:
+- ClientHello / ServerHello
+- Cipher suites negotiated
+- TLS version
+- Certificate exchange
+
+---
+
+### Decrypt TLS traffic (requires keys)
+
+**Option 1: Pre-Master Secret log (recommended for browsers/curl)**
+
+1. Set env var before launching the app:
+   ```bash
+   export SSLKEYLOGFILE=~/tls-keys.log
+   ```
+2. Run your browser or `curl` — it writes session keys to that file
+3. In Wireshark: **Edit → Preferences → Protocols → TLS**
+4. Set `(Pre)-Master-Secret log filename` to `~/tls-keys.log`
+5. Wireshark will now show decrypted HTTP/2 or HTTP/1.1 inside TLS
+
+**Option 2: RSA private key** (only works if no PFS — i.e., no ECDHE/DHE)
+
+1. **Edit → Preferences → Protocols → TLS → RSA keys list**
+2. Add: IP, port, protocol, and path to the `.pem` private key
+
+> TLS 1.3 uses PFS by default, so Option 1 (SSLKEYLOGFILE) is the **only** way to decrypt TLS 1.3.
+
+---
+
+### Useful display filters
+
+| Filter | Purpose |
+|--------|---------|
+| `tls` | All TLS traffic |
+| `tls.handshake.type == 1` | ClientHello only |
+| `tls.handshake.type == 2` | ServerHello only |
+| `tls.handshake.type == 11` | Certificate |
+| `tls.alert` | TLS alerts/errors |
+| `tcp.port == 443` | HTTPS traffic |
+
+---
+
+### Follow a TLS stream
+Right-click a packet → **Follow → TLS Stream** — shows decrypted payload if keys are loaded.
